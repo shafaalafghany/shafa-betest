@@ -10,7 +10,7 @@ if (redisType === 'uri') {
 }
 
 redisClient.on('error', (error) => {
-  console.error('Redis connection error:', error);
+  console.error('unable connect to redis:', error);
 })
 
 redisClient.connect()
