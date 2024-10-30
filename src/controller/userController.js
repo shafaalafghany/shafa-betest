@@ -93,6 +93,16 @@ class UserController {
     }
   }
 
+  async getByAccountNumber(req, res, next) {
+    try {
+      const user = await this.userService.getByAccount(req.params.accountNumber)
+
+      return SUCCESS(res, 200, '', user)
+    } catch (e) {
+      next(e)
+    }
+  }
+
   async delete(req, res, next) {
     try {
       const id = req.auth.id
