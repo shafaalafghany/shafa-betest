@@ -7,6 +7,7 @@ const userController = Injector.userController()
 
 router.post('/auth', userController.register.bind(userController))
 router.post('/auth/login', userController.login.bind(userController))
-router.patch('/user/', authenticateJWT, userController.update.bind(userController))
+router.get('/user', authenticateJWT, userController.get.bind(userController))
+router.patch('/user', authenticateJWT, userController.update.bind(userController))
 
 module.exports = router
