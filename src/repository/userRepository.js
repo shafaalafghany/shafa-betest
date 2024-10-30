@@ -41,7 +41,7 @@ class UserRepository {
         _id: id,
         deletedAt: null,
       }).select('-password')
-      if (user) await this.redis.set(`userid:${id}`, JSON.stringify(user), 3600)
+      if (user) await this.redis.set(`userId:${id}`, JSON.stringify(user), 3600)
 
       return user
     } catch (e) {
