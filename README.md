@@ -39,7 +39,7 @@ cd shafa-betest
 ```bash
 npm install
 ```
-3. **Environment Setup**
+3. **Environment Setup** <br>
 Create a `.env` file in the root directory of your project and add the following environment variables:
 ```bash
 PORT=
@@ -61,7 +61,7 @@ This command will start the server, and you should see a message indicating the 
 server is running on port {YOUR-PORT}
 database connected
 ```
-3. **Access the Application**
+3. **Access the Application** <br>
 Once the server is running, you can access the API locally at `http://localhost:{YOUR-PORT}`
 
 ## API Documentation
