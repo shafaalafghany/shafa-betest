@@ -30,7 +30,6 @@ class UserService {
                     : emailExists
       delete user.password
 
-      console.log("YUHU", user)
       return user
     } catch (e) {
       throw new CustomError(e.message || 'error register user', e.statusCode || 500)
