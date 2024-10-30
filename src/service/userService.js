@@ -64,6 +64,14 @@ class UserService {
     }
   }
 
+  async getByAccount(accountNumber) {
+    try {
+      return await this.userRepository.findUserByAccountNumber(accountNumber)
+    } catch (e) {
+      throw new CustomError(e.message || constant.COMMON_SERVER_ERROR, e.statusCode || 500)
+    }
+  }
+
   async delete(id) {
     try {
       return await this.userRepository.deleteUser(id) 
