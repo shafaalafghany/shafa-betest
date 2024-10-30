@@ -7,8 +7,10 @@ const userController = Injector.userController()
 
 router.post('/auth', userController.register.bind(userController))
 router.post('/auth/login', userController.login.bind(userController))
-router.get('/user', authenticateJWT, userController.get.bind(userController))
 router.patch('/user', authenticateJWT, userController.update.bind(userController))
 router.delete('/user', authenticateJWT, userController.delete.bind(userController))
+router.get('/user', authenticateJWT, userController.get.bind(userController))
+router.get('/user/account/:accountNumber', authenticateJWT, userController.getByAccountNumber.bind(userController))
+router.get('/user/identity/:identityNumber', authenticateJWT, userController.get.bind(userController))
 
 module.exports = router
