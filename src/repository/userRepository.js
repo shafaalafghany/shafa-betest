@@ -66,6 +66,23 @@ class UserRepository {
     }
   }
 
+  async findUserByIdentityNumber(identityNumber) {
+    try {
+      const cachedUser = await this.redis.get(`userAccount:${identityNumber}`)
+      if (cachedUser) return JSON.parse(cachedUser)
+
+      const user = await this.userModel.findOne({
+        identityNumber,
+        deletedAt: null,
+      }).select('-password')
+      if (user) await this.redis.set(`userAccount:${identityNumber}`, JSON.stringify(user), 3600)
+
+      return user
+    } catch (e) {
+      throw new CustomError(constant.FAILED_FIND_USER)
+    }
+  }
+
   async updateUserById(data, id) {
     try {
       const user = await this.userModel.findByIdAndUpdate(id, { $set: data }, { new: true }).select('-password')
