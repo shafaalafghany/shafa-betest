@@ -14,4 +14,8 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 )
 
+userSchema.index({ accountNumber: 1 })
+userSchema.index({ emailAddress: 1 })
+userSchema.index({ identityNumber: 1 })
+
 module.exports = mongoose.model('User', userSchema)
