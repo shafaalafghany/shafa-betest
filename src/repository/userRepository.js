@@ -22,7 +22,7 @@ class UserRepository {
 
       const user = await this.userModel.findOne({
         emailAddress: email,
-        updatedAt: null,
+        deletedAt: null,
       })
       if (user) await this.redis.set(`userEmail:${email}`, JSON.stringify(user), 3600)
 
