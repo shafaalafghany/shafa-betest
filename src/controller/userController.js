@@ -103,6 +103,16 @@ class UserController {
     }
   }
 
+  async getByIdentityNumber(req, res, next) {
+    try {
+      const user = await this.userService.getByIdentity(req.params.identityNumber)
+
+      return SUCCESS(res, 200, '', user)
+    } catch (e) {
+      next(e)
+    }
+  }
+
   async delete(req, res, next) {
     try {
       const id = req.auth.id
