@@ -72,6 +72,14 @@ class UserService {
     }
   }
 
+  async getByIdentity(identityNumber) {
+    try {
+      return await this.userRepository.findUserByIdentityNumber(identityNumber)
+    } catch (e) {
+      throw new CustomError(e.message || constant.COMMON_SERVER_ERROR, e.statusCode || 500)
+    }
+  }
+
   async delete(id) {
     try {
       return await this.userRepository.deleteUser(id) 
