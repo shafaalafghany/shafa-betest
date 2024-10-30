@@ -1,5 +1,5 @@
 const express = require('express')
-const authenticateJWT = require('../middleware/auth_middleware')
+const authenticateJWT = require('../middleware/authMiddleware')
 const Injector = require('../injector')
 
 const router = express.Router()
