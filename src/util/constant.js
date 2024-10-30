@@ -9,6 +9,7 @@ module.exports = {
   FAILED_CREATE_USER: 'failed to create user',
   FAILED_FIND_USER: 'failed to find user',
   FAILED_UPDATE_USER: 'failed to update user',
+  FAILED_DELETE_USER: 'failed to delete user',
   USER_NOT_FOUND: 'user not found',
   SUCCESS_REGISTER: 'user registered',
 }
