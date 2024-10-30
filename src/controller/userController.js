@@ -80,6 +80,18 @@ class UserController {
       next(e)
     }
   }
+
+  async get(req, res, next) {
+    try {
+      const id = req.auth.id
+
+      const user = await this.userService.get(id)
+
+      return SUCCESS(res, 200, '', user)
+    } catch (e) {
+      next(e)
+    }
+  }
 }
 
 module.exports = UserController
