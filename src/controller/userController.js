@@ -92,6 +92,18 @@ class UserController {
       next(e)
     }
   }
+
+  async delete(req, res, next) {
+    try {
+      const id = req.auth.id
+
+      await this.userService.delete(id)
+
+      return SUCCESS(res, 200, 'delete user successful')
+    } catch (e) {
+      next(e)
+    }
+  }
 }
 
 module.exports = UserController
