@@ -10,7 +10,6 @@ class UserService {
   async register(data) {
     try {
       const emailExists = await this.userRepository.findUserByEmail(data.emailAddress)
-      console.log("AWAW", emailExists)
       if (emailExists) throw new CustomError(constant.EMAIL_ALREADY_USED, 409)
 
       const hashedPassword = await bcrypt.hash(data.password, 10)
