@@ -19,6 +19,23 @@ class UserService {
       throw new CustomError(e.message || 'error register user', e.statusCode || 500)
     }
   }
+
+  async login(data) {
+    try {
+      const emailExists = await this.userRepository.findUserByEmail(data.email)
+      if (!emailExists || !(await bcrypt.compare(data.password, emailExists.password))) throw new CustomError(constant.INVALID_EMAIL_OR_PASSWORD, 400)
+
+      const user = emailExists instanceof this.userRepository.userModel
+                    ? emailExists.toJSON()
+                    : emailExists
+      delete user.password
+
+      console.log("YUHU", user)
+      return user
+    } catch (e) {
+      throw new CustomError(e.message || 'error register user', e.statusCode || 500)
+    }
+  }
 }
 
 module.exports = UserService
