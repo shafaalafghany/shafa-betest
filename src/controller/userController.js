@@ -7,6 +7,7 @@ const { CustomError } = require('../util/errorHandler')
 const params = {
   registerParams: ["userName", "accountNumber", "emailAddress", "identityNumber", "password"],
   login: ["email", "password"],
+  update: ["username", "accountNumber", "identityNumber"],
 }
 
 
@@ -60,6 +61,21 @@ class UserController {
       }
 
       return SUCCESS(res, 200, '', data)
+    } catch (e) {
+      next(e)
+    }
+  }
+
+  async update(req, res, next) {
+    try {
+      const id = req.auth.id
+      const body = req.body
+
+      validator(req.body, params.update)
+
+      const user = await this.userService.update(body, id)
+
+      return SUCCESS(res, 200, 'update user successful', user)
     } catch (e) {
       next(e)
     }
